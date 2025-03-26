@@ -70,6 +70,19 @@
 
   <script>
 
+    function playSoundWithKeyCode(keyCode) {
+
+      console.log(`playing the song : ${keyCode}`)
+      const player = document.querySelector(`audio[data-key="${keyCode}"]`)
+      const key = document.querySelector(`.key[data-id="${keyCode}"]`)
+      // if js can't find the element (undefined data-key) it will return null
+      if (!player) return;
+      player.currentTime = 0;
+      player.play();
+      key.classList.add('playing')
+
+    }
+
     function playSound(event) {
 
       const player = document.querySelector(`audio[data-key="${event.keyCode}"]`)
@@ -85,13 +98,14 @@
     function removeTransition(event) {
 
       // will print twice! once adding playing and second when removing playing (removing has reverse transition)
-      console.log(event.propertyName)
+      //      console.log(event.propertyName)
       this.classList.remove('playing')
 
     }
 
     // remove class when all transitions ends
     const keys = document.querySelectorAll('.key')
+    keys.forEach(key => key.addEventListener('click' , ()=>{playSoundWithKeyCode(key.dataset.id)}))
     keys.forEach(key => key.addEventListener('transitionend', removeTransition))
     // play sound on keydowns
     window.addEventListener('keydown', playSound);

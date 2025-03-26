@@ -38,7 +38,7 @@ body {
 .key {
   padding: 16px;
   background-color: rgba(0, 0, 0, 0.45);
-  border: 5px solid black;
+  border: 3.5px solid black;
   color: white;
   width: 8rem;
   height: 6rem;
@@ -63,4 +63,17 @@ body {
 .playing {
   transform: scale(1.2);
   box-shadow: 0px 0px 10px 5px #ffc600;
+}
+
+/* query for small screens */
+
+@media (max-width:36rem) {
+
+  html {
+    font-size: 50%;
+  }
+
+  .main_container {
+    flex-direction: column;
+  }
 }
