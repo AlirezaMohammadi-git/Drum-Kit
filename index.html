@@ -106,6 +106,7 @@
     // remove class when all transitions ends
     const keys = document.querySelectorAll('.key')
     keys.forEach(key => key.addEventListener('click' , ()=>{playSoundWithKeyCode(key.dataset.id)}))
+    // we also have access to animationend event!
     keys.forEach(key => key.addEventListener('transitionend', removeTransition))
     // play sound on keydowns
     window.addEventListener('keydown', playSound);
