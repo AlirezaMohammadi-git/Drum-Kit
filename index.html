@@ -14,43 +14,43 @@
   <main class="main_container">
 
 
-    <div class="key" data-key="65">
+    <div class="key" data-id="65">
 
-      <h1>ش</h1>
-      <p>کف زدن</p>
+      <h1>A</h1>
+      <p>clap</p>
 
     </div>
     <div class="key" data-id="83">
-      <h1>س</h1>
-      <p>هیهات</p>
+      <h1>S</h1>
+      <p>hihat</p>
     </div>
     <div class="key" data-id="68">
-      <h1>ی</h1>
-      <p>ضربه</p>
+      <h1>D</h1>
+      <p>kick</p>
     </div>
     <div class="key" data-id="70">
-      <h1>ب</h1>
-      <p>کلاه باز</p>
+      <h1>F</h1>
+      <p>openhat</p>
     </div>
     <div class="key" data-id="71">
-      <h1>ل</h1>
-      <p>بوم</p>
+      <h1>G</h1>
+      <p>boom</p>
     </div>
     <div class="key" data-id="72">
-      <h1>ا</h1>
-      <p>سواری</p>
+      <h1>H</h1>
+      <p>ride</p>
     </div>
     <div class="key" data-id="74">
-      <h1>ت</h1>
-      <p>دام</p>
+      <h1>J</h1>
+      <p>snare</p>
     </div>
     <div class="key" data-id="75">
-      <h1>ن</h1>
-      <p>تام</p>
+      <h1>K</h1>
+      <p>tom</p>
     </div>
     <div class="key" data-id="76">
-      <h1>م</h1>
-      <p>قلع و قمع</p>
+      <h1>L</h1>
+      <p>tink</p>
     </div>
 
   </main>
@@ -63,6 +63,7 @@
   <audio src="sounds/tom.wav" data-key="75"></audio>
   <audio src="sounds/ride.wav" data-key="72"></audio>
   <audio src="sounds/tink.wav" data-key="76"></audio>
+  <audio src="sounds/snare.wav" data-key="74"></audio>
 
 
 
@@ -72,15 +73,28 @@
     function playSound(event) {
 
       const player = document.querySelector(`audio[data-key="${event.keyCode}"]`)
-      const key = document.querySelector(`.key[data-key="${event.keyCode}"]`)
+      const key = document.querySelector(`.key[data-id="${event.keyCode}"]`)
       // if js can't find the element (undefined data-key) it will return null
       if (!player) return;
       player.currentTime = 0;
       player.play();
+      key.classList.add('playing')
 
     }
 
-    window.addEventListener( 'keydown' , playSound );
+    function removeTransition(event) {
+
+      // will print twice! once adding playing and second when removing playing (removing has reverse transition)
+      console.log(event.propertyName)
+      this.classList.remove('playing')
+
+    }
+
+    // remove class when all transitions ends
+    const keys = document.querySelectorAll('.key')
+    keys.forEach(key => key.addEventListener('transitionend', removeTransition))
+    // play sound on keydowns
+    window.addEventListener('keydown', playSound);
 
   </script>
 
