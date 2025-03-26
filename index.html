@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>درام کیت!</title>
+</head>
+
+<body>
+
+
+  <main class="main_container">
+
+
+    <div class="key" data-key="65">
+
+      <h1>ش</h1>
+      <p>کف زدن</p>
+
+    </div>
+    <div class="key" data-id="83">
+      <h1>س</h1>
+      <p>هیهات</p>
+    </div>
+    <div class="key" data-id="68">
+      <h1>ی</h1>
+      <p>ضربه</p>
+    </div>
+    <div class="key" data-id="70">
+      <h1>ب</h1>
+      <p>کلاه باز</p>
+    </div>
+    <div class="key" data-id="71">
+      <h1>ل</h1>
+      <p>بوم</p>
+    </div>
+    <div class="key" data-id="72">
+      <h1>ا</h1>
+      <p>سواری</p>
+    </div>
+    <div class="key" data-id="74">
+      <h1>ت</h1>
+      <p>دام</p>
+    </div>
+    <div class="key" data-id="75">
+      <h1>ن</h1>
+      <p>تام</p>
+    </div>
+    <div class="key" data-id="76">
+      <h1>م</h1>
+      <p>قلع و قمع</p>
+    </div>
+
+  </main>
+
+  <audio src="sounds/boom.wav" data-key="71"></audio>
+  <audio src="sounds/clap.wav" data-key="65"></audio>
+  <audio src="sounds/hihat.wav" data-key="83"></audio>
+  <audio src="sounds/kick.wav" data-key="68"></audio>
+  <audio src="sounds/openhat.wav" data-key="70"></audio>
+  <audio src="sounds/tom.wav" data-key="75"></audio>
+  <audio src="sounds/ride.wav" data-key="72"></audio>
+  <audio src="sounds/tink.wav" data-key="76"></audio>
+
+
+
+
+  <script>
+
+    function playSound(event) {
+
+      const player = document.querySelector(`audio[data-key="${event.keyCode}"]`)
+      const key = document.querySelector(`.key[data-key="${event.keyCode}"]`)
+      // if js can't find the element (undefined data-key) it will return null
+      if (!player) return;
+      player.currentTime = 0;
+      player.play();
+
+    }
+
+    window.addEventListener( 'keydown' , playSound );
+
+  </script>
+
+</body>
+
+</html>
